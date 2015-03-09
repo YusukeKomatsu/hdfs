@@ -3,8 +3,6 @@ package main
 import (
   "fmt"
   "log"
-  "os"
-  "sort"
 )
 
 func askForConfirmation() bool {
@@ -25,7 +23,7 @@ func askForConfirmation() bool {
   }
 }
 
-fuc posString(slice []string, element string) int {
+func posString(slice []string, element string) int {
   for index, elem := range slice {
     if elem == element {
       return index
