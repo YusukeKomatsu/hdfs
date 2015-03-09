@@ -221,6 +221,11 @@ func main() {
 }
 
 func cmdExec(command string, argment string) {
+  if len(argment) <= 0 {
+    fmt.Println("Can't get argment.");
+    os.Exit(1)
+  }
+
   rootEnv := os.Getenv("HADOOP_BIN_PATH")
 
   if len(rootEnv) <= 0 {
