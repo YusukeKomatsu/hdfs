@@ -37,21 +37,21 @@ func main() {
     },
     {
       Name:  "dus",
-      Usage: "Show the amount of space, in bytes, used by the files that match the specified file pattern.  Equivalent to the unix command 'du -sb'  The output is in the form ",
+      Usage: "Show the amount of space, in bytes, used by the files that match the specified file pattern.",
       Action: func(c *cli.Context) {
         println("dus command")
       },
     },
     {
       Name:  "mv",
-      Usage: "Move files that match the specified file pattern <src>  to a destination <dst>.  When moving multiple files, the destination must be a directory.",
+      Usage: "Move files that match the specified file pattern <src>  to a destination <dst>.",
       Action: func(c *cli.Context) {
         println("mv command")
       },
     },
     {
       Name:  "cp",
-      Usage: "Copy files that match the file pattern <src> to a destination.\nWhen copying multiple files, the destination must be a directory.",
+      Usage: "Copy files that match the file pattern <src> to a destination.",
       Action: func(c *cli.Context) {
         println("cp command")
       },
@@ -114,7 +114,7 @@ func main() {
     },
     {
       Name:  "getmerge",
-      Usage: "Get all the files in the directories that match the source file pattern and merge and sort them to only one file on local fs. <src> is kept.",
+      Usage: "Get all the files in the directories that match the source file pattern and merge and sort them to only one file on local fs.",
       Action: func(c *cli.Context) {
         println("getmerge command")
       },
@@ -149,7 +149,7 @@ func main() {
     },
     {
       Name:  "touchz",
-      Usage: "Write a timestamp in yyyy-MM-dd HH:mm:ss format in a file at path. An error is returned if the file exists with non-zero length",
+      Usage: "Write a timestamp in yyyy-MM-dd HH:mm:ss format in a file at path.",
       Action: func(c *cli.Context) {
         println("touchz command")
       },
@@ -163,7 +163,7 @@ func main() {
     },
     {
       Name:  "text",
-      Usage: "Takes a source file and outputs the file in text format.\nThe allowed formats are zip and TextRecordInputStream.",
+      Usage: "Takes a source file and outputs the file in text format.",
       Action: func(c *cli.Context) {
         println("text command")
       },
@@ -177,14 +177,14 @@ func main() {
     },
     {
       Name:  "chmod",
-      Usage: "Changes permissions of a file.\nThis works similar to shell's chmod with a few exceptions.",
+      Usage: "Changes permissions of a file. This works similar to shell's chmod with a few exceptions.",
       Action: func(c *cli.Context) {
         println("chmod command")
       },
     },
     {
       Name:  "chown",
-      Usage: "Changes owner and group of a file.\nThis is similar to shell's chown with a few exceptions.",
+      Usage: "Changes owner and group of a file. This is similar to shell's chown with a few exceptions.",
       Action: func(c *cli.Context) {
         println("chown command")
       },
