@@ -233,12 +233,14 @@ func cmdExec(command string, argment string) {
   }
   cmd := exec.Command(rootEnv, "fs" , command, argment)
   var stdout bytes.Buffer
+  var stderr bytes.Buffer
   cmd.Stdout = &stdout
+  cmd.Stderr = &stderr
 
   err := cmd.Run()
 
   if err != nil {
-    println(err)
+    println(fmt.Sprint(err) + ": " + stderr.String())
     os.Exit(1)
   }
 
