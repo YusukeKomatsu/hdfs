@@ -12,7 +12,7 @@ import (
 func main() {
   app := cli.NewApp()
   app.Name    = "hdfs"
-  app.Usage   = "testing yeah!!"
+  app.Usage   = "Hadoop-fs wrapper command"
   app.Author  = "Yusuke Komatsu"
   app.Email   = "tienlen042@gmail.com"
   app.Version = VERSION
@@ -184,35 +184,35 @@ func main() {
       Name:  "stat",
       Usage: "Print statistics about the file/directory at path",
       Action: func(c *cli.Context) {
-        println("stat command is still under construction")
+        println("Sorry, stat command is still under construction")
       },
     },
     {
       Name:  "chmod",
       Usage: "Changes permissions of a file. This works similar to shell's chmod with a few exceptions.",
       Action: func(c *cli.Context) {
-        println("chmod command is still under construction")
+        println("Sorry, chmod command is still under construction")
       },
     },
     {
       Name:  "chown",
       Usage: "Changes owner and group of a file. This is similar to shell's chown with a few exceptions.",
       Action: func(c *cli.Context) {
-        println("chown command is still under construction")
+        println("Sorry, chown command is still under construction")
       },
     },
     {
       Name:  "chgrp",
       Usage: "This is equivalent to chown ... :GROUP ...",
       Action: func(c *cli.Context) {
-        println("chgrp command is still under construction")
+        println("Sorry, chgrp command is still under construction")
       },
     },
     {
       Name:  "count",
       Usage: "Count the number of directories, files and bytes under the paths that match the specified file pattern.",
       Action: func(c *cli.Context) {
-        println("count command is still under construction")
+        println("Sorry, count command is still under construction")
       },
     },
   }
