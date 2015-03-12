@@ -7,6 +7,7 @@ import (
   "os/exec"
   "github.com/codegangsta/cli"
 //  "github.com/davecgh/go-spew/spew"
+  "color"
 )
 
 func main() {
@@ -21,16 +22,12 @@ func main() {
     {
       Name:  "ls",
       Usage: "List the contents that match the specified file pattern.",
-      Action: func(c *cli.Context) {
-        cmdExec("-ls", c.Args().First())
-      },
+      Action: cmdList,
     },
     {
       Name:  "lsr",
       Usage: "Recursively list the contents that match the specified file pattern.",
-      Action: func(c *cli.Context) {
-        cmdExec("-lsr", c.Args().First())
-      },
+      Action: cmdListRecursive,
     },
     {
       Name:  "du",
@@ -63,24 +60,12 @@ func main() {
     {
       Name:  "rm",
       Usage: "Delete all files that match the specified file pattern.",
-      Action: func(c *cli.Context) {
-        path := c.Args().First()
-        fmt.Printf("WARNING: Are you sure? (yes/no)\ntarget:%s\n", path)
-        if askForConfirmation() {
-          cmdExec("-rm", c.Args().First())
-        }
-      },
+      Action: cmdRemove,
     },
     {
       Name:  "rmr",
       Usage: "Remove all directories which match the specified file pattern.",
-      Action: func(c *cli.Context) {
-        path := c.Args().First()
-        fmt.Printf("WARNING: Are you sure? (yes/no)\ntarget:%s\n", path)
-        if askForConfirmation() {
-          cmdExec("-rmr", c.Args().First())
-        }
-      },
+      Action: cmdRemoveRecursive,
     },
     {
       Name:  "put",
@@ -220,7 +205,7 @@ func main() {
   app.Run(os.Args)
 }
 
-func cmdExec(command string, argment string) {
+func cmdExec(command string, argment ...string) {
   if len(argment) <= 0 {
     fmt.Println("Can't get argment.");
     os.Exit(1)
@@ -245,4 +230,28 @@ func cmdExec(command string, argment string) {
   }
 
   println(stdout.String())
+}
+
+func cmdList(c *cli.Context) {
+  cmdExec("-ls", c.Args()...)
+}
+
+func cmdListRecursive(c *cli.Context) {
+  cmdExec("-lsr", c.Args()...)
+}
+
+func cmdRemove(c *cli.Context) {
+  path := c.Args().First()
+  color.Red("WARNING: Are you sure? (yes/no)\ntarget:%s\n", path)
+  if askForConfirmation() {
+    cmdExec("-rm", c.Args().First())
+  }
+}
+
+func cmdRemoveRecursive(c *cli.Context) {
+  path := c.Args().First()
+  color.Red("WARNING: Are you sure? (yes/no)\ntarget:%s\n", path)
+  if askForConfirmation() {
+    cmdExec("-rmr", c.Args().First())
+  }
 }
