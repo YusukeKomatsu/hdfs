@@ -7,7 +7,7 @@ import (
   "os/exec"
   "github.com/codegangsta/cli"
 //  "github.com/davecgh/go-spew/spew"
-  "color"
+  "github.com/fatih/color"
 )
 
 func main() {
@@ -205,9 +205,9 @@ func main() {
   app.Run(os.Args)
 }
 
-func cmdExec(command string, argment ...string) {
-  if len(argment) <= 0 {
-    fmt.Println("Can't get argment.");
+func cmdExec(command string, args ...string) {
+  if len(args) <= 0 {
+    fmt.Println("Can't get argments.");
     os.Exit(1)
   }
 
@@ -216,7 +216,11 @@ func cmdExec(command string, argment ...string) {
   if len(rootEnv) <= 0 {
     rootEnv = "/usr/local/hadoop/bin/hadoop";
   }
-  cmd := exec.Command(rootEnv, "fs" , command, argment)
+
+  argments := []string{"fs", command}
+  argments = append(argments, args...)
+
+  cmd := exec.Command(rootEnv, argments...)
   var stdout bytes.Buffer
   var stderr bytes.Buffer
   cmd.Stdout = &stdout
