@@ -32,30 +32,22 @@ func main() {
     {
       Name:  "du",
       Usage: "Show the amount of space, in bytes, used by the files that match the specified file pattern.",
-      Action: func(c *cli.Context) {
-        println("Sorry, du command is still under construction")
-      },
+      Action: cmdDirectoryUsage,
     },
     {
       Name:  "dus",
       Usage: "Show the amount of space, in bytes, used by the files that match the specified file pattern.",
-      Action: func(c *cli.Context) {
-        println("Sorry, dus command is still under construction")
-      },
+      Action: cmdDirectoryUsageSummary,
     },
     {
       Name:  "mv",
       Usage: "Move files that match the specified file pattern <src>  to a destination <dst>.",
-      Action: func(c *cli.Context) {
-        println("Sorry, mv command is still under construction")
-      },
+      Action: cmdMove,
     },
     {
       Name:  "cp",
       Usage: "Copy files that match the file pattern <src> to a destination.",
-      Action: func(c *cli.Context) {
-        println("Sorry, cp command is still under construction")
-      },
+      Action: cmdCopy,
     },
     {
       Name:  "rm",
@@ -70,135 +62,97 @@ func main() {
     {
       Name:  "put",
       Usage: "Copy files from the local file system into fs.",
-      Action: func(c *cli.Context) {
-        println("Sorry, put command is still under construction")
-      },
+      Action: cmdPut,
     },
     {
       Name:  "copyFromLocal",
       Usage: "Identical to the -put command.",
-      Action: func(c *cli.Context) {
-        println("Sorry, copyFromLocal command is still under construction")
-      },
+      Action: cmdCopyFromLocal,
     },
     {
       Name:  "copyToLocal",
       Usage: "Identical to the get command.",
-      Action: func(c *cli.Context) {
-        println("Sorry, copyToLocal command is still under construction")
-      },
+      Action: cmdCopyToLocal,
     },
     {
       Name:  "moveFromLocal",
       Usage: "Same as -put, except that the source is deleted after it's copied.",
-      Action: func(c *cli.Context) {
-        println("Sorry, moveFromLocal command is still under construction")
-      },
+      Action: cmdMoveFromLocal,
     },
     {
       Name:  "moveToLocal",
       Usage: "Not implemented yet",
-      Action: func(c *cli.Context) {
-        println("Sorry, moveToLocal command is still under construction")
-      },
+      Action: cmdMoveToLocal,
     },
     {
       Name:  "get",
       Usage: "Copy files that match the file pattern <src> to the local name.",
-      Action: func(c *cli.Context) {
-        println("Sorry, get command is still under construction")
-      },
+      Action: cmdGetFiles,
     },
     {
       Name:  "getmerge",
       Usage: "Get all the files in the directories that match the source file pattern and merge and sort them to only one file on local fs.",
-      Action: func(c *cli.Context) {
-        println("Sorry, getmerge command is still under construction")
-      },
+      Action: cmdGetMerge,
     },
     {
       Name:  "cat",
       Usage: "Fetch all files that match the file pattern sorce and display their content on stdout.",
-      Action: func(c *cli.Context) {
-        println("Sorry, cat command is still under construction")
-      },
+      Action: cmdCat,
     },
     {
       Name:  "mkdir",
       Usage: "Create a directory in specified location.",
-      Action: func(c *cli.Context) {
-        println("Sorry, mkdir command is still under construction")
-      },
+      Action: cmdMakeDirectory,
     },
     {
       Name:  "setrep",
-      Usage: "et the replication level of a file.",
-      Action: func(c *cli.Context) {
-        println("Sorry, setrep command is still under construction")
-      },
+      Usage: "Set the replication level of a file.",
+      Action: cmdSetReplicationLevel,
     },
     {
       Name:  "tail",
       Usage: "Show the last 1KB of the file.",
-      Action: func(c *cli.Context) {
-        println("Sorry, tail command is still under construction")
-      },
+      Action: cmdTail,
     },
     {
       Name:  "touchz",
       Usage: "Write a timestamp in yyyy-MM-dd HH:mm:ss format in a file at path.",
-      Action: func(c *cli.Context) {
-        println("Sorry, touchz command is still under construction")
-      },
+      Action: cmdTouch,
     },
     {
       Name:  "test",
       Usage: "If file { exists, has zero length, is a directory then return 0, else return 1.",
-      Action: func(c *cli.Context) {
-        println("Sorry, test command is still under construction")
-      },
+      Action: cmdTest,
     },
     {
       Name:  "text",
       Usage: "Takes a source file and outputs the file in text format.",
-      Action: func(c *cli.Context) {
-        println("Sorry, text command is still under construction")
-      },
+      Action: cmdTextOutput,
     },
     {
       Name:  "stat",
       Usage: "Print statistics about the file/directory at path",
-      Action: func(c *cli.Context) {
-        println("Sorry, stat command is still under construction")
-      },
+      Action: cmdPrintStatistics,
     },
     {
       Name:  "chmod",
       Usage: "Changes permissions of a file. This works similar to shell's chmod with a few exceptions.",
-      Action: func(c *cli.Context) {
-        println("Sorry, chmod command is still under construction")
-      },
+      Action: cmdChangeMode,
     },
     {
       Name:  "chown",
       Usage: "Changes owner and group of a file. This is similar to shell's chown with a few exceptions.",
-      Action: func(c *cli.Context) {
-        println("Sorry, chown command is still under construction")
-      },
+      Action: cmdChangeOwn,
     },
     {
       Name:  "chgrp",
       Usage: "This is equivalent to chown ... :GROUP ...",
-      Action: func(c *cli.Context) {
-        println("Sorry, chgrp command is still under construction")
-      },
+      Action: cmdChangeGroup,
     },
     {
       Name:  "count",
       Usage: "Count the number of directories, files and bytes under the paths that match the specified file pattern.",
-      Action: func(c *cli.Context) {
-        println("Sorry, count command is still under construction")
-      },
+      Action: cmdCount,
     },
   }
 
@@ -236,12 +190,84 @@ func cmdExec(command string, args ...string) {
   println(stdout.String())
 }
 
+func cmdCat(c *cli.Context) {
+  cmdExec("-cat", c.Args()...)
+}
+
+func cmdChangeGroup(c *cli.Context) {
+  cmdExec("-chgrp", c.Args()...)
+}
+
+func cmdChangeMode(c *cli.Context) {
+  cmdExec("-chmod", c.Args()...)
+}
+
+func cmdChangeOwn(c *cli.Context) {
+  cmdExec("-chown", c.Args()...)
+}
+
+func cmdCopyFromLocal(c *cli.Context) {
+  cmdExec("-copyFromLocal", c.Args()...)
+}
+
+func cmdCopyToLocal(c *cli.Context) {
+  cmdExec("-copyToLocal", c.Args()...)
+}
+
+func cmdCount(c *cli.Context) {
+  cmdExec("-count", c.Args()...)
+}
+
+func cmdCopy(c *cli.Context) {
+  cmdExec("-cp", c.Args()...)
+}
+
+func cmdDirectoryUsage(c *cli.Context) {
+  cmdExec("-du", c.Args()...)
+}
+
+func cmdDirectoryUsageSummary(c *cli.Context) {
+  cmdExec("-dus", c.Args()...)
+}
+
+func cmdGetFiles(c *cli.Context) {
+  cmdExec("-get", c.Args()...)
+}
+
+func cmdGetMerge(c *cli.Context) {
+  cmdExec("-getmerge", c.Args()...)
+}
+
 func cmdList(c *cli.Context) {
   cmdExec("-ls", c.Args()...)
 }
 
 func cmdListRecursive(c *cli.Context) {
   cmdExec("-lsr", c.Args()...)
+}
+
+func cmdMakeDirectory(c *cli.Context) {
+  cmdExec("-mkdir", c.Args()...)
+}
+
+func cmdMove(c *cli.Context) {
+  cmdExec("-mv", c.Args()...)
+}
+
+func cmdMoveFromLocal(c *cli.Context) {
+  cmdExec("-moveFromLocal", c.Args()...)
+}
+
+func cmdMoveToLocal(c *cli.Context) {
+  cmdExec("-moveToLocal", c.Args()...)
+}
+
+func cmdPrintStatistics(c *cli.Context) {
+  cmdExec("-stat", c.Args()...)
+}
+
+func cmdPut(c *cli.Context) {
+  cmdExec("-put", c.Args()...)
 }
 
 func cmdRemove(c *cli.Context) {
@@ -258,4 +284,24 @@ func cmdRemoveRecursive(c *cli.Context) {
   if askForConfirmation() {
     cmdExec("-rmr", c.Args().First())
   }
+}
+
+func cmdSetReplicationLevel(c *cli.Context) {
+  cmdExec("-setrep", c.Args()...)
+}
+
+func cmdTail(c *cli.Context) {
+  cmdExec("-tail", c.Args()...)
+}
+
+func cmdTest(c *cli.Context) {
+  cmdExec("-test", c.Args()...)
+}
+
+func cmdTextOutput(c *cli.Context) {
+  cmdExec("-text", c.Args()...)
+}
+
+func cmdTouch(c *cli.Context) {
+  cmdExec("-touchz", c.Args()...)
 }
